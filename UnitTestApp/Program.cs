@@ -9,11 +9,11 @@ public static class Calculator
             return 0;
 
         var numberArray = numbers.Split(delimiter)
-                                 .Select(n => int.TryParse(n, out var parsed) ? parsed : 0) // ïðåîáðàçóåì â ÷èñëà, èãíîðèðóÿ íå ÷èñëîâûå çíà÷åíèÿ
+                                 .Select(n => int.TryParse(n, out var parsed) ? parsed : 0) // Ã¯Ã°Ã¥Ã®Ã¡Ã°Ã Ã§Ã³Ã¥Ã¬ Ã¢ Ã·Ã¨Ã±Ã«Ã , Ã¨Ã£Ã­Ã®Ã°Ã¨Ã°Ã³Ã¿ Ã­Ã¥ Ã·Ã¨Ã±Ã«Ã®Ã¢Ã»Ã¥ Ã§Ã­Ã Ã·Ã¥Ã­Ã¨Ã¿
                                  .Where(n => n >= 0 && n <= 10)
                                  .Take(5);
 
-        // ïðîâåðêà, åñòü ëè â ñåðèè ÷èñåë îòðèö. ÷èñëî
+        // Ã¯Ã°Ã®Ã¢Ã¥Ã°ÃªÃ , Ã¥Ã±Ã²Ã¼ Ã«Ã¨ Ã¢ Ã±Ã¥Ã°Ã¨Ã¨ Ã·Ã¨Ã±Ã¥Ã« Ã®Ã²Ã°Ã¨Ã¶. Ã·Ã¨Ã±Ã«Ã®
         if (numberArray.Any(n => n < 0))
             return 0;
 
@@ -28,8 +28,7 @@ namespace UnitTestApp
     {
         public static void Main(string[] args)
         {
-            // ïóñòîé ìåòîä Main (áåç íåãî íå äàåò çàïóñòèòü)
+            // Ã¯Ã³Ã±Ã²Ã®Ã© Ã¬Ã¥Ã²Ã®Ã¤ Main (Ã¡Ã¥Ã§ Ã­Ã¥Ã£Ã® Ã­Ã¥ Ã¤Ã Ã¥Ã² Ã§Ã Ã¯Ã³Ã±Ã²Ã¨Ã²Ã¼)
         }
     }
-
 }
