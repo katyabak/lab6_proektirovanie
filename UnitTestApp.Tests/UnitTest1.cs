@@ -4,7 +4,7 @@ using Xunit;
 
 public class CalculatorTests
 {
-    // правильная ли сумма
+    // РїСЂР°РІРёР»СЊРЅР°СЏ Р»Рё СЃСѓРјРјР°
     [Fact]
     public void SumNumbers_ReturnsCorrectSum_WhenValidInput()
     {
@@ -18,7 +18,7 @@ public class CalculatorTests
         Assert.Equal(24, result);
     }
 
-    // игнор чисел > 10 при вычисление суммы
+    // РёРіРЅРѕСЂ С‡РёСЃРµР» > 10 РїСЂРё РІС‹С‡РёСЃР»РµРЅРёРµ СЃСѓРјРјС‹
     [Fact]
     public void SumNumbers_IgnoresNumbersGreaterThan10()
     {
@@ -32,7 +32,7 @@ public class CalculatorTests
         Assert.Equal(20, result);
     }
 
-    // суммирование только первых 5 чисел
+    // СЃСѓРјРјРёСЂРѕРІР°РЅРёРµ С‚РѕР»СЊРєРѕ РїРµСЂРІС‹С… 5 С‡РёСЃРµР»
     [Fact]
     public void SumNumbers_OnlySumFirstFiveNumbers()
     {
@@ -46,7 +46,7 @@ public class CalculatorTests
         Assert.Equal(24, result);
     }
 
-    // если отриц. число - 0
+    // РµСЃР»Рё РѕС‚СЂРёС†. С‡РёСЃР»Рѕ - 0
     [Fact]
     public void SumNumbers_ReturnsZero_WhenNegativeNumberPresent()
     {
@@ -60,7 +60,7 @@ public class CalculatorTests
         Assert.Equal(0, result);
     }
 
-    // пустая строка - 0
+    // РїСѓСЃС‚Р°СЏ СЃС‚СЂРѕРєР° - 0
     [Fact]
     public void SumNumbers_ReturnsZero_WhenEmptyString()
     {
@@ -74,7 +74,7 @@ public class CalculatorTests
         Assert.Equal(0, result);
     }
 
-    // суммирование чисел с пользовательским разделителем
+    // СЃСѓРјРјРёСЂРѕРІР°РЅРёРµ С‡РёСЃРµР» СЃ РїРѕР»СЊР·РѕРІР°С‚РµР»СЊСЃРєРёРј СЂР°Р·РґРµР»РёС‚РµР»РµРј
     [Fact]
     public void SumNumbers_CanUseCustomDelimiter()
     {
@@ -88,7 +88,7 @@ public class CalculatorTests
         Assert.Equal(24, result);
     }
 
-    // игнорирование нечисловых символов при вычислении суммы
+    // РёРіРЅРѕСЂРёСЂРѕРІР°РЅРёРµ РЅРµС‡РёСЃР»РѕРІС‹С… СЃРёРјРІРѕР»РѕРІ РїСЂРё РІС‹С‡РёСЃР»РµРЅРёРё СЃСѓРјРјС‹
     [Fact]
     public void SumNumbers_IgnoresNonNumericCharacters()
     {
