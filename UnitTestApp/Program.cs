@@ -9,11 +9,11 @@ public static class Calculator
             return 0;
 
         var numberArray = numbers.Split(delimiter)
-                                 .Select(n => int.TryParse(n, out var parsed) ? parsed : 0) // ïðåîáðàçóåì â ÷èñëà, èãíîðèðóÿ íå ÷èñëîâûå çíà÷åíèÿ
+                                 .Select(n => int.TryParse(n, out var parsed) ? parsed : 0) // преобразуем в числа, игнорируя не числовые значения
                                  .Where(n => n >= 0 && n <= 10)
                                  .Take(5);
 
-        // ïðîâåðêà, åñòü ëè â ñåðèè ÷èñåë îòðèö. ÷èñëî
+        // проверка, есть ли в серии чисел отриц. число
         if (numberArray.Any(n => n < 0))
             return 0;
 
@@ -28,7 +28,7 @@ namespace UnitTestApp
     {
         public static void Main(string[] args)
         {
-            // ïóñòîé ìåòîä Main (áåç íåãî íå äàåò çàïóñòèòü)
+            // пустой метод Main (без него не дает запустить)
         }
     }
 }
