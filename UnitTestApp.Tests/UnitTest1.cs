@@ -1,6 +1,7 @@
 using System;
 using UnitTestApp.Controllers;
 using Xunit;
+using FluentAssertions;
 
 public class CalculatorTests
 {
@@ -51,7 +52,7 @@ public class CalculatorTests
     public void SumNumbers_ReturnsZero_WhenNegativeNumberPresent()
     {
         // Arrange
-        var numbers = "3 -8 -4 -2 7";
+        var numbers = "-3,-8,-4,-2,-7";
 
         // Act
         var result = Calculator.SumNumbers(numbers);
@@ -90,16 +91,17 @@ public class CalculatorTests
 
     // игнорирование нечисловых символов при вычислении суммы
     [Fact]
-    public void SumNumbers_IgnoresNonNumericCharacters()
+    public void SumNumbers_ThrowsException_WhenNonNumericCharactersFound()
     {
         // Arrange
         var numbers = "3,8,4,a,7";
 
         // Act
-        var result = Calculator.SumNumbers(numbers);
+        Action act = () => Calculator.SumNumbers(numbers);
 
         // Assert
-        Assert.Equal(22, result);
+        act.Should().ThrowExactly<ArgumentException>()
+           .WithMessage("Введены неверные данные!");
     }
 }
 
