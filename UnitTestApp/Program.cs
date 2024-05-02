@@ -1,4 +1,4 @@
-using System;
+п»їusing System;
 using System.Linq;
 
 public static class Calculator
@@ -9,17 +9,19 @@ public static class Calculator
             return 0;
 
         var numberArray = numbers.Split(delimiter)
-                                 .Select(n => int.TryParse(n, out var parsed) ? parsed : 0) // преобразуем в числа, игнорируя не числовые значения
-                                 .Where(n => n >= 0 && n <= 10)
-                                 .Take(5);
-
-        // проверка, есть ли в серии чисел отриц. число
-        if (numberArray.Any(n => n < 0))
-            return 0;
+                                 .Select(n =>
+                                 {
+                                     if (!int.TryParse(n, out var parsed))
+                                         throw new ArgumentException("Р’РІРµРґРµРЅС‹ РЅРµРІРµСЂРЅС‹Рµ РґР°РЅРЅС‹Рµ!");
+                                     // Р•СЃР»Рё С‡РёСЃР»Рѕ РѕС‚СЂРёС†Р°С‚РµР»СЊРЅРѕРµ, РІРѕР·РІСЂР°С‰Р°РµРј 0
+                                     return parsed < 0 ? 0 : parsed;
+                                 })
+                                 .Where(n => n <= 10)
+                                 .Take(5)
+                                 .ToList();
 
         return numberArray.Sum();
     }
-
 }
 
 namespace UnitTestApp
@@ -28,8 +30,7 @@ namespace UnitTestApp
     {
         public static void Main(string[] args)
         {
-            // пустой метод Main (без него не дает запустить)
+            // РїСѓСЃС‚РѕР№ РјРµС‚РѕРґ Main (Р±РµР· РЅРµРіРѕ РЅРµ РґР°РµС‚ Р·Р°РїСѓСЃС‚РёС‚СЊ)
         }
     }
-
 }

@@ -1,10 +1,10 @@
-using System;
+ï»¿using System;
 using UnitTestApp.Controllers;
 using Xunit;
-
+using FluentAssertions;
 public class CalculatorTests
 {
-    // ïðàâèëüíàÿ ëè ñóììà
+    // Ð¿Ñ€Ð°Ð²Ð¸Ð»ÑŒÐ½Ð°Ñ Ð»Ð¸ ÑÑƒÐ¼Ð¼Ð°
     [Fact]
     public void SumNumbers_ReturnsCorrectSum_WhenValidInput()
     {
@@ -18,7 +18,7 @@ public class CalculatorTests
         Assert.Equal(24, result);
     }
 
-    // èãíîð ÷èñåë > 10 ïðè âû÷èñëåíèå ñóììû
+    // Ð¸Ð³Ð½Ð¾Ñ€ Ñ‡Ð¸ÑÐµÐ» > 10 Ð¿Ñ€Ð¸ Ð²Ñ‹Ñ‡Ð¸ÑÐ»ÐµÐ½Ð¸Ðµ ÑÑƒÐ¼Ð¼Ñ‹
     [Fact]
     public void SumNumbers_IgnoresNumbersGreaterThan10()
     {
@@ -32,7 +32,7 @@ public class CalculatorTests
         Assert.Equal(20, result);
     }
 
-    // ñóììèðîâàíèå òîëüêî ïåðâûõ 5 ÷èñåë
+    // ÑÑƒÐ¼Ð¼Ð¸Ñ€Ð¾Ð²Ð°Ð½Ð¸Ðµ Ñ‚Ð¾Ð»ÑŒÐºÐ¾ Ð¿ÐµÑ€Ð²Ñ‹Ñ… 5 Ñ‡Ð¸ÑÐµÐ»
     [Fact]
     public void SumNumbers_OnlySumFirstFiveNumbers()
     {
@@ -46,12 +46,12 @@ public class CalculatorTests
         Assert.Equal(24, result);
     }
 
-    // åñëè îòðèö. ÷èñëî - 0
+    // ÐµÑÐ»Ð¸ Ð¾Ñ‚Ñ€Ð¸Ñ†. Ñ‡Ð¸ÑÐ»Ð¾ - 0
     [Fact]
     public void SumNumbers_ReturnsZero_WhenNegativeNumberPresent()
     {
         // Arrange
-        var numbers = "3 -8 -4 -2 7";
+        var numbers = "-3,-8,-4,-2,-7";
 
         // Act
         var result = Calculator.SumNumbers(numbers);
@@ -60,7 +60,7 @@ public class CalculatorTests
         Assert.Equal(0, result);
     }
 
-    // ïóñòàÿ ñòðîêà - 0
+    // Ð¿ÑƒÑÑ‚Ð°Ñ ÑÑ‚Ñ€Ð¾ÐºÐ° - 0
     [Fact]
     public void SumNumbers_ReturnsZero_WhenEmptyString()
     {
@@ -74,7 +74,7 @@ public class CalculatorTests
         Assert.Equal(0, result);
     }
 
-    // ñóììèðîâàíèå ÷èñåë ñ ïîëüçîâàòåëüñêèì ðàçäåëèòåëåì
+    // ÑÑƒÐ¼Ð¼Ð¸Ñ€Ð¾Ð²Ð°Ð½Ð¸Ðµ Ñ‡Ð¸ÑÐµÐ» Ñ Ð¿Ð¾Ð»ÑŒÐ·Ð¾Ð²Ð°Ñ‚ÐµÐ»ÑŒÑÐºÐ¸Ð¼ Ñ€Ð°Ð·Ð´ÐµÐ»Ð¸Ñ‚ÐµÐ»ÐµÐ¼
     [Fact]
     public void SumNumbers_CanUseCustomDelimiter()
     {
@@ -88,18 +88,19 @@ public class CalculatorTests
         Assert.Equal(24, result);
     }
 
-    // èãíîðèðîâàíèå íå÷èñëîâûõ ñèìâîëîâ ïðè âû÷èñëåíèè ñóììû
+    // Ð¸Ð³Ð½Ð¾Ñ€Ð¸Ñ€Ð¾Ð²Ð°Ð½Ð¸Ðµ Ð½ÐµÑ‡Ð¸ÑÐ»Ð¾Ð²Ñ‹Ñ… ÑÐ¸Ð¼Ð²Ð¾Ð»Ð¾Ð² Ð¿Ñ€Ð¸ Ð²Ñ‹Ñ‡Ð¸ÑÐ»ÐµÐ½Ð¸Ð¸ ÑÑƒÐ¼Ð¼Ñ‹
     [Fact]
-    public void SumNumbers_IgnoresNonNumericCharacters()
+    public void SumNumbers_ThrowsException_WhenNonNumericCharactersFound()
     {
         // Arrange
         var numbers = "3,8,4,a,7";
 
         // Act
-        var result = Calculator.SumNumbers(numbers);
+        Action act = () => Calculator.SumNumbers(numbers);
 
         // Assert
-        Assert.Equal(22, result);
+        act.Should().ThrowExactly<ArgumentException>()
+           .WithMessage("Ð’Ð²ÐµÐ´ÐµÐ½Ñ‹ Ð½ÐµÐ²ÐµÑ€Ð½Ñ‹Ðµ Ð´Ð°Ð½Ð½Ñ‹Ðµ!");
     }
 }
 
